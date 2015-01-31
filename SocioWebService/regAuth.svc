@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="VB" Debug="true" Service="SocioWebService.regAuth" CodeBehind="regAuth.svc.vb" %>
