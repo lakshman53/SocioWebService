@@ -17,7 +17,7 @@ Public Class RegAuthenticate
         Return "Hello World"
 
     End Function
-
+    <WebMethod()> _
     Public Function isEmployeeExists(ByVal EmpId As String, ByVal MobileNo As String, ByVal Email As String) As Boolean
         Dim connectionString As String = _
             "Server=tcp:mqjkakgxkk.database.windows.net,1433;Database=sociodb;" & _
