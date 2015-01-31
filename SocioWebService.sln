@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SocioWebService", "SocioWebService\SocioWebService.vbproj", "{555D112D-7AB5-4DFF-B66E-272D168E94F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{D8EBDEAE-F980-4AC0-AC2F-4F05882C4C4A}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{F25B74A1-18BF-42F3-8F3D-6123149DF3FB}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\SocioWebService-WAWS-dev.json = PublishScripts\Configurations\SocioWebService-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5A5D23AE-AA7D-4FEC-B621-8001D4796A3D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{555D112D-7AB5-4DFF-B66E-272D168E94F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{555D112D-7AB5-4DFF-B66E-272D168E94F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{555D112D-7AB5-4DFF-B66E-272D168E94F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{555D112D-7AB5-4DFF-B66E-272D168E94F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F25B74A1-18BF-42F3-8F3D-6123149DF3FB} = {D8EBDEAE-F980-4AC0-AC2F-4F05882C4C4A}
+	EndGlobalSection
+EndGlobal
