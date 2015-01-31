@@ -31,13 +31,9 @@ Public Class RegAuthenticate
             & "AND Email = @Email " _
             & "AND MobileNo = @MobileNo"
 
-        ' Create and open the connection in a using block. This 
-        ' ensures that all resources will be closed and disposed 
-        ' when the code exits. 
-
+        
         Using connection As New SqlConnection(connectionString)
 
-            ' Create the Command and Parameter objects. 
             Dim command As New SqlCommand(queryString, connection)
 
             command.Parameters.AddWithValue("@EmpId", EmpId)
@@ -45,9 +41,6 @@ Public Class RegAuthenticate
             command.Parameters.AddWithValue("@MobileNo", MobileNo)
 
 
-            ' Open the connection in a try/catch block.  
-            ' Create and execute the DataReader, writing the result 
-            ' set to the console window. 
             Try
                 connection.Open()
                 Dim dataReader As SqlDataReader = _
@@ -67,6 +60,8 @@ Public Class RegAuthenticate
             End Try
             Console.ReadLine()
         End Using
+
+        Return True
 
     End Function
 
