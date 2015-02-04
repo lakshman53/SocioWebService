@@ -65,5 +65,36 @@ Public Class RegAuthenticate
 
     End Function
 
+    <WebMethod()> _
+    Public Function logAttendance(Latitude As String, ByVal Longitude As String, ByVal EmpId As String, ByVal LogFlag As String) As String
+
+        Dim insertStatement As String
+        Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
+
+        insertStatement = "INSERT INTO [dbo].[Attendance] ([LoginDateTime], [Latitude], [Longitude], [EmpId], [LogFlag]) VALUES (dbo.GetLocalDate(DEFAULT), @Latitude, @Longitude, @EmpId, @LogFlag)"
+
+        Using connection As New SqlConnection(connectionString)
+
+            Dim command As New SqlCommand(insertStatement, connection)
+
+            command.Parameters.AddWithValue("@Latitude", Latitude)
+            command.Parameters.AddWithValue("@Longitude", Longitude)
+            command.Parameters.AddWithValue("@EmpId", EmpId)
+            command.Parameters.AddWithValue("@LogFlag", LogFlag)
+
+            connection.Open()
+
+            Try
+                command.ExecuteNonQuery()
+            Catch ex As Exception
+                Return ex.Message
+            End Try
+
+            Return "Success"
+
+        End Using
+
+
+    End Function
 
 End Class

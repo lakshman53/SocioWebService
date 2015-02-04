@@ -216,6 +216,13 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="viewDetails.aspx.designer.vb">
+      <DependentUpon>viewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewDetails.aspx.vb">
+      <DependentUpon>viewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="IregAuth.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -287,6 +294,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="viewDetails.aspx" />
     <Content Include="RegAuthenticate.asmx" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
