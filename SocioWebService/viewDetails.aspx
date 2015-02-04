@@ -22,8 +22,10 @@
                 <asp:BoundField DataField="LoginDateTime" HeaderText="LoginDateTime" SortExpression="LoginDateTime" />
             </Columns>
         </asp:GridView>
-   
-    </div>
+        <br />
+        <br />
+        Mark more attendance in the application and refresh this page to see the entries.<a href="addEmployee.aspx"> Click here 
+            </a>to add a new employee.</div>
     </form>
 </body>
 </html>
