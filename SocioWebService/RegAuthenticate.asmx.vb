@@ -19,14 +19,17 @@ Public Class RegAuthenticate
     End Function
 
     <WebMethod()> _
-    Public Function isEmployeeExists(ByVal EmpId As String, ByVal MobileNo As String, ByVal Email As String) As Integer
+    Public Function isEmployeeExists(ByVal EmpId As String, ByVal MobileNo As String, ByVal Email As String) As String
 
         Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
 
         ' Provide the query string with a parameter placeholder. 
 
+        Dim strempId As String = ""
+        Dim randomNum As String = ""
+        
         Dim queryString As String = _
-            "SELECT count(1) from dbo.vEmployee " _
+            "SELECT id from dbo.Employee " _
             & "WHERE EmpId = @EmpId " _
             & "AND Email = @Email " _
             & "AND MobileNo = @MobileNo"
@@ -45,23 +48,25 @@ Public Class RegAuthenticate
                 Dim dataReader As SqlDataReader = _
                  command.ExecuteReader()
 
-                Do While dataReader.Read()
-                    If dataReader(0) = 1 Then
-                        Randomize()
-                        Return Int(Rnd() * 10000)
-                    Else
-                        Return -1
-                    End If
-                Loop
-                dataReader.Close()
+                If dataReader.HasRows Then
+                    Randomize()
+                    randomNum = (Int(Rnd() * 10000)).ToString()
+                    Do While dataReader.Read()
+                        strempId = dataReader.GetInt32(0).ToString
+                    Loop
+                    Return strempId + "," + randomNum
+
+                Else
+                    Return "wrong"
+                End If
 
             Catch ex As Exception
-                Console.WriteLine(ex.Message)
+                Return ex.Message
+
             End Try
-            Console.ReadLine()
+
         End Using
 
-        Return True
 
     End Function
 
@@ -93,7 +98,6 @@ Public Class RegAuthenticate
             Return "Success"
 
         End Using
-
 
     End Function
 
