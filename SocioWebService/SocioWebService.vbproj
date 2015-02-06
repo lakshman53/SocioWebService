@@ -234,8 +234,8 @@
     </Compile>
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Controllers\ValuesController.vb" />
-    <Compile Include="RegAuthenticate.asmx.vb">
-      <DependentUpon>RegAuthenticate.asmx</DependentUpon>
+    <Compile Include="GenMethods.asmx.vb">
+      <DependentUpon>GenMethods.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebService.vb" />
@@ -287,7 +287,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="RegAuthenticate.asmx" />
+    <Content Include="GenMethods.asmx" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
