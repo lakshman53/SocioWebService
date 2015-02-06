@@ -71,6 +71,29 @@ Public Class RegAuthenticate
     End Function
 
     <WebMethod()> _
+    Public Function getcurrentDateTime() As String
+
+        Dim selectStatement As String
+        Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
+
+        selectStatement = "SELECT datename(weekday, dbo.GetLocalDate(DEFAULT) ) + ', ' + convert(nvarchar(50), dbo.GetLocalDate(DEFAULT), 100)"
+
+        Using connection As New SqlConnection(connectionString)
+
+            Dim command As New SqlCommand(selectStatement, connection)
+            connection.Open()
+            Dim dataReader As SqlDataReader = command.ExecuteReader()
+
+            Do While dataReader.Read()
+                getcurrentDateTime = dataReader.GetString(0).ToString()
+            Loop
+
+            Return getcurrentDateTime
+        End Using
+
+    End Function
+
+    <WebMethod()> _
     Public Function logAttendance(Latitude As String, ByVal Longitude As String, ByVal EmpId As String, ByVal LogFlag As String) As String
 
         Dim insertStatement As String
