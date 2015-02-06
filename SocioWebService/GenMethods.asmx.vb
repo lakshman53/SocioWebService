@@ -94,34 +94,72 @@ Public Class RegAuthenticate
     End Function
 
     <WebMethod()> _
-    Public Function logAttendance(Latitude As String, ByVal Longitude As String, ByVal EmpId As String, ByVal LogFlag As String) As String
+    Public Function logAttendance(Latitude As String, ByVal Longitude As String, ByVal GPID As String, ByVal DistanceFromStore As Integer, ByVal LogFlag As String) As Integer
 
-        Dim insertStatement As String
+        Dim sqlStatement As String
         Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
 
-        insertStatement = "INSERT INTO [dbo].[Attendance] ([LoginDateTime], [Latitude], [Longitude], [EmpId], [LogFlag]) VALUES (dbo.GetLocalDate(DEFAULT), @Latitude, @Longitude, @EmpId, @LogFlag)"
+        If LogFlag = "A" Then
+            sqlStatement = "INSERT INTO [dbo].[Attendance] ([InLoginDateTime], [InLatitude], [InLongitude], [EmpId], [InDistanceFromStore]) VALUES (dbo.GetLocalDate(DEFAULT), @Latitude, @Longitude, @GPID, @DistanceFromStore)"
+        Else
+            sqlStatement = "UPDATE [dbo].[Attendance] SET [OutLoginDateTime] = dbo.GetLocalDate(DEFAULT), [OutLatitude] = @Latitude, [OutLongitude] = @Longitude, [OutDistanceFromStore] = @DistanceFromStore WHERE Id =  @GPID"
+        End If
 
         Using connection As New SqlConnection(connectionString)
 
-            Dim command As New SqlCommand(insertStatement, connection)
+            Dim command As New SqlCommand(sqlStatement, connection)
 
             command.Parameters.AddWithValue("@Latitude", Latitude)
             command.Parameters.AddWithValue("@Longitude", Longitude)
-            command.Parameters.AddWithValue("@EmpId", EmpId)
-            command.Parameters.AddWithValue("@LogFlag", LogFlag)
+            command.Parameters.AddWithValue("@GPID", GPID)
+            command.Parameters.AddWithValue("@DistanceFromStore", DistanceFromStore)
 
             connection.Open()
 
             Try
-                command.ExecuteNonQuery()
+
+                If LogFlag = "A" Then
+                    command.ExecuteNonQuery()
+
+                    Dim lastIdentityQueryString As String = "SELECT MAX(ID) FROM ATTENDANCE WHERE EMPID = " + GPID
+                    command = New SqlCommand(lastIdentityQueryString, connection)
+                    Dim dataReader As SqlDataReader = command.ExecuteReader()
+                    Dim generatedId As Integer = 0
+                    Do While dataReader.Read()
+                        generatedId = dataReader.GetInt32(0).ToString
+                    Loop
+
+                    Return generatedId
+                Else
+                    Dim numRowsaffected As Integer = command.ExecuteNonQuery()
+                    If numRowsaffected = 1 Then
+                        Return GPID
+                    Else
+                        sqlStatement = "INSERT INTO [dbo].[Attendance] ([OutLoginDateTime], [OutLatitude], [OutLongitude], [EmpId], [OutDistanceFromStore]) VALUES (dbo.GetLocalDate(DEFAULT), @Latitude, @Longitude, @GPID, @DistanceFromStore)"
+                        command.Parameters.AddWithValue("@Latitude", Latitude)
+                        command.Parameters.AddWithValue("@Longitude", Longitude)
+                        command.Parameters.AddWithValue("@GPID", GPID)
+                        command.Parameters.AddWithValue("@DistanceFromStore", DistanceFromStore)
+
+                        command.ExecuteNonQuery()
+
+                        Dim lastIdentityQueryString As String = "SELECT SCOPE_IDENTITY()"
+                        command = New SqlCommand(lastIdentityQueryString, connection)
+                        Dim dataReader As SqlDataReader = command.ExecuteReader()
+                        Dim generatedId As Integer = 0
+                        Do While dataReader.Read()
+                            generatedId = dataReader.GetInt32(0).ToString
+                        Loop
+
+                        Return generatedId
+
+                    End If
+                End If
+
             Catch ex As Exception
-                Return ex.Message
+                Return -1
             End Try
-
-            Return "Success"
-
         End Using
-
     End Function
 
 End Class
