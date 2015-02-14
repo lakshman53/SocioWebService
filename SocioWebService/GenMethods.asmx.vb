@@ -19,7 +19,7 @@ Public Class RegAuthenticate
     End Function
 
     <WebMethod()> _
-    Public Function isEmployeeExists(ByVal EmpId As String, ByVal MobileNo As String, ByVal Email As String) As String
+    Public Function isEmployeeExists(ByVal EmpNum As String, ByVal MobileNo As String, ByVal Email As String) As String
 
         Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
 
@@ -27,10 +27,10 @@ Public Class RegAuthenticate
 
         Dim strempId As String = ""
         Dim randomNum As String = ""
-        
+
         Dim queryString As String = _
-            "SELECT id from dbo.Employee " _
-            & "WHERE EmpId = @EmpId " _
+            "SELECT EmpId from dbo.Employee " _
+            & "WHERE EmpNum = @EmpNum " _
             & "AND Email = @Email " _
             & "AND MobileNo = @MobileNo"
 
@@ -39,7 +39,7 @@ Public Class RegAuthenticate
 
             Dim command As New SqlCommand(queryString, connection)
 
-            command.Parameters.AddWithValue("@EmpId", EmpId)
+            command.Parameters.AddWithValue("@EmpNum", EmpNum)
             command.Parameters.AddWithValue("@Email", Email)
             command.Parameters.AddWithValue("@MobileNo", MobileNo)
 
@@ -94,7 +94,7 @@ Public Class RegAuthenticate
     End Function
 
     <WebMethod()> _
-    Public Function logAttendance(Latitude As String, ByVal Longitude As String, ByVal GPID As String, ByVal DistanceFromStore As Integer, ByVal LogFlag As String) As Integer
+    Public Function logAttendance(ByVal Latitude As String, ByVal Longitude As String, ByVal GPID As String, ByVal DistanceFromStore As Double, ByVal LogFlag As String) As Integer
 
         Dim sqlStatement As String
         Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
