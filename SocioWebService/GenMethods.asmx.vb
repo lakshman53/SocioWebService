@@ -8,6 +8,8 @@ Imports System.Data.SqlClient
 <System.Web.Services.WebService(Namespace:="http://tempuri.org/")> _
 <System.Web.Services.WebServiceBinding(ConformsTo:=WsiProfiles.BasicProfile1_1)> _
 <ToolboxItem(False)> _
+
+
 Public Class RegAuthenticate
     Inherits System.Web.Services.WebService
 
@@ -17,16 +19,7 @@ Public Class RegAuthenticate
         Return "Hello World"
 
     End Function
-    '<WebMethod()> _
 
-    'Public Function getOrders(ByVal lastOrderNum As Integer, ByVal EmpId As Integer) As ArrayList
-    '    Dim A As New ArrayList
-
-    '    A.Add("abc")
-
-    '    Return A
-
-    'End Function
 
     <WebMethod()> _
     Public Function isEmployeeExists(ByVal EmpNum As String, ByVal MobileNo As String, ByVal Email As String) As String
