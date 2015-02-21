@@ -17,6 +17,16 @@ Public Class RegAuthenticate
         Return "Hello World"
 
     End Function
+    '<WebMethod()> _
+
+    'Public Function getOrders(ByVal lastOrderNum As Integer, ByVal EmpId As Integer) As ArrayList
+    '    Dim A As New ArrayList
+
+    '    A.Add("abc")
+
+    '    Return A
+
+    'End Function
 
     <WebMethod()> _
     Public Function isEmployeeExists(ByVal EmpNum As String, ByVal MobileNo As String, ByVal Email As String) As String
