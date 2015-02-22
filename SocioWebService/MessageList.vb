@@ -11,7 +11,7 @@
 
     End Sub
 
-    Property subject() As String
+    Public Property subject() As String
         Get
             Return lsubject
         End Get
@@ -21,7 +21,7 @@
         End Set
     End Property
 
-    Property message() As String
+    Public Property message() As String
         Get
             Return lmessage
         End Get
@@ -31,7 +31,7 @@
         End Set
     End Property
 
-    Property sent() As String
+    Public Property sent() As String
         Get
             Return lsent
         End Get
@@ -41,7 +41,7 @@
         End Set
     End Property
 
-    Property offerId() As Integer
+    Public Property offerId() As Integer
         Get
             Return lofferid
         End Get

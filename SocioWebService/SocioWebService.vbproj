@@ -240,7 +240,6 @@
       <DependentUpon>GenMethods.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="WebService.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

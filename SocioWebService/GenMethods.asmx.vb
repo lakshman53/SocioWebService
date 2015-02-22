@@ -8,8 +8,6 @@ Imports System.Data.SqlClient
 <System.Web.Services.WebService(Namespace:="http://tempuri.org/")> _
 <System.Web.Services.WebServiceBinding(ConformsTo:=WsiProfiles.BasicProfile1_1)> _
 <ToolboxItem(False)> _
-
-
 Public Class RegAuthenticate
     Inherits System.Web.Services.WebService
 
@@ -70,6 +68,18 @@ Public Class RegAuthenticate
 
         End Using
 
+
+    End Function
+
+    <WebMethod()> _
+    Public Function getMessages() As MessageList
+        Dim lMessageList
+
+        lMessageList = New MessageList("123", 0)
+
+
+
+        Return lMessageList
 
     End Function
 
