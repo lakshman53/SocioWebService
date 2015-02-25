@@ -1,8 +1,13 @@
 ﻿Public Class MessageList
 
-    Private lofferid, lsender As Integer
-    Private lsubject, lmessage, lsent As String
-    Private lempId As String, lLastMessage As Integer
+    Public lofferid, lsender As Integer
+    Public lsubject, lmessage, lsent As String
+    Public lempId As String, lLastMessage As Integer
+    Public abcd As String
+    
+    Public Sub New()
+
+    End Sub
 
     Public Sub New(ByVal empId As String, ByVal LastMessage As Integer)
 
