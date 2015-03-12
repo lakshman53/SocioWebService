@@ -214,6 +214,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.vb" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.vb" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.vb" />
+    <Compile Include="EmpProfile.vb" />
     <Compile Include="MessageList.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,6 +241,7 @@
       <DependentUpon>GenMethods.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Offers.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

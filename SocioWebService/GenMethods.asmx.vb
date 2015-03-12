@@ -11,13 +11,6 @@ Imports System.Data.SqlClient
 Public Class RegAuthenticate
     Inherits System.Web.Services.WebService
 
-    <WebMethod()> _
-    Public Function HelloWorld() As String
-
-        Return "Hello World"
-
-    End Function
-
 
     <WebMethod()> _
     Public Function isEmployeeExists(ByVal EmpNum As String, ByVal MobileNo As String, ByVal Email As String) As String
@@ -73,13 +66,21 @@ Public Class RegAuthenticate
 
     <WebMethod()> _
     Public Function getMessages() As MessageList
-        Dim lMessageList
 
-        lMessageList = New MessageList("123", 0)
+        Return New MessageList("123", 40)
 
+    End Function
+    <WebMethod()> _
+    Public Function getProfile(ByVal EmpId As Integer) As EmpProfile
 
+        Return New EmpProfile(EmpId)
 
-        Return lMessageList
+    End Function
+
+    <WebMethod()> _
+    Public Function getOffers(ByVal EmpId As Integer, ByVal LastOfferId As Integer) As Offers
+
+        Return New Offers(EmpId, LastOfferId)
 
     End Function
 
