@@ -7,7 +7,7 @@ Public Class Offers
 
     'Public Subject, Offer, Sent As String
     Public offerString As String
-
+    ''comment
     Public Sub New(ByVal EmpId As Integer, ByVal LastOfferId As Integer)
         Dim selectStatement As String
         Dim connectionString As String = System.Configuration.ConfigurationManager.AppSettings("ConnectionString").ToString()
